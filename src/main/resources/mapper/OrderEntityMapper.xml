@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.mapper.OrderEntityMapper">
+    <resultMap id="BaseResultMap" type="com.example.car.model.OrderEntity">
+        <!--@mbg.generated-->
+        <!--@Table order_tab-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="order_num" jdbcType="VARCHAR" property="orderNum"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="car_id" jdbcType="BIGINT" property="carId"/>
+        <result column="rental_start_time" jdbcType="TIMESTAMP" property="rentalStartTime"/>
+        <result column="rental_end_time" jdbcType="TIMESTAMP" property="rentalEndTime"/>
+        <result column="order_price" jdbcType="DOUBLE" property="orderPrice"/>
+        <result column="order_status" jdbcType="TINYINT" property="orderStatus"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="delete_flag" jdbcType="TINYINT" property="deleteFlag"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, order_num, user_id, car_id, rental_start_time, rental_end_time, order_price,
+        order_status, create_time, update_time, delete_flag
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from order_tab
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from order_tab
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.car.model.OrderEntity"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into order_tab (order_num, user_id, car_id,
+        rental_start_time, rental_end_time, order_price,
+        order_status, create_time, update_time,
+        delete_flag)
+        values (#{orderNum,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{carId,jdbcType=BIGINT},
+        #{rentalStartTime,jdbcType=TIMESTAMP}, #{rentalEndTime,jdbcType=TIMESTAMP}, #{orderPrice,jdbcType=DOUBLE},
+        #{orderStatus,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+        #{deleteFlag,jdbcType=TINYINT})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.car.model.OrderEntity"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into order_tab
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderNum != null">
+                order_num,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="carId != null">
+                car_id,
+            </if>
+            <if test="rentalStartTime != null">
+                rental_start_time,
+            </if>
+            <if test="rentalEndTime != null">
+                rental_end_time,
+            </if>
+            <if test="orderPrice != null">
+                order_price,
+            </if>
+            <if test="orderStatus != null">
+                order_status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderNum != null">
+                #{orderNum,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="carId != null">
+                #{carId,jdbcType=BIGINT},
+            </if>
+            <if test="rentalStartTime != null">
+                #{rentalStartTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="rentalEndTime != null">
+                #{rentalEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderPrice != null">
+                #{orderPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="orderStatus != null">
+                #{orderStatus,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                #{deleteFlag,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.car.model.OrderEntity">
+        <!--@mbg.generated-->
+        update order_tab
+        <set>
+            <if test="orderNum != null">
+                order_num = #{orderNum,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="carId != null">
+                car_id = #{carId,jdbcType=BIGINT},
+            </if>
+            <if test="rentalStartTime != null">
+                rental_start_time = #{rentalStartTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="rentalEndTime != null">
+                rental_end_time = #{rentalEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderPrice != null">
+                order_price = #{orderPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="orderStatus != null">
+                order_status = #{orderStatus,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag = #{deleteFlag,jdbcType=TINYINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.car.model.OrderEntity">
+        <!--@mbg.generated-->
+        update order_tab
+        set order_num = #{orderNum,jdbcType=VARCHAR},
+        user_id = #{userId,jdbcType=BIGINT},
+        car_id = #{carId,jdbcType=BIGINT},
+        rental_start_time = #{rentalStartTime,jdbcType=TIMESTAMP},
+        rental_end_time = #{rentalEndTime,jdbcType=TIMESTAMP},
+        order_price = #{orderPrice,jdbcType=DOUBLE},
+        order_status = #{orderStatus,jdbcType=TINYINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        delete_flag = #{deleteFlag,jdbcType=TINYINT}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.mapper.CarEntityMapper">
+    <resultMap id="BaseResultMap" type="com.example.car.model.CarEntity">
+        <!--@mbg.generated-->
+        <!--@Table car_tab-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="car_model" jdbcType="VARCHAR" property="carModel"/>
+        <result column="car_stock" jdbcType="BIGINT" property="carStock"/>
+        <result column="car_daily_price" jdbcType="DOUBLE" property="carDailyPrice"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="delete_flag" jdbcType="TINYINT" property="deleteFlag"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, car_model, car_stock, car_daily_price, create_time, update_time, delete_flag
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from car_tab
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from car_tab
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.car.model.CarEntity"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into car_tab (car_model, car_stock, car_daily_price,
+        create_time, update_time, delete_flag
+        )
+        values (#{carModel,jdbcType=VARCHAR}, #{carStock,jdbcType=BIGINT}, #{carDailyPrice,jdbcType=DOUBLE},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=TINYINT}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.car.model.CarEntity"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into car_tab
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="carModel != null">
+                car_model,
+            </if>
+            <if test="carStock != null">
+                car_stock,
+            </if>
+            <if test="carDailyPrice != null">
+                car_daily_price,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="carModel != null">
+                #{carModel,jdbcType=VARCHAR},
+            </if>
+            <if test="carStock != null">
+                #{carStock,jdbcType=BIGINT},
+            </if>
+            <if test="carDailyPrice != null">
+                #{carDailyPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                #{deleteFlag,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.car.model.CarEntity">
+        <!--@mbg.generated-->
+        update car_tab
+        <set>
+            <if test="carModel != null">
+                car_model = #{carModel,jdbcType=VARCHAR},
+            </if>
+            <if test="carStock != null">
+                car_stock = #{carStock,jdbcType=BIGINT},
+            </if>
+            <if test="carDailyPrice != null">
+                car_daily_price = #{carDailyPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag = #{deleteFlag,jdbcType=TINYINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.car.model.CarEntity">
+        <!--@mbg.generated-->
+        update car_tab
+        set car_model = #{carModel,jdbcType=VARCHAR},
+        car_stock = #{carStock,jdbcType=BIGINT},
+        car_daily_price = #{carDailyPrice,jdbcType=DOUBLE},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        delete_flag = #{deleteFlag,jdbcType=TINYINT}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <select id="selectCarList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from car_tab
+        <where>
+            <if test="carModel != null and carModel != ''">
+                car_model like concat('%', #{carModel,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="carStock != null">
+                AND car_stock >= #{carStock,jdbcType=BIGINT}
+            </if>
+        </where>
+    </select>
+</mapper>
