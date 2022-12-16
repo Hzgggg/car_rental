@@ -9,6 +9,12 @@ import java.util.Date;
  */
 @Data
 public class OrderEntity {
+    //    0-unpaid, 1-paid, 2-canceled, 3-completed
+    public final static int ORDER_STATUS_UNPAID = 0;
+    public final static int ORDER_STATUS_PAID = 1;
+    public final static int ORDER_STATUS_CANCELED = 2;
+    public final static int ORDER_STATUS_COMPLETED = 3;
+
     /**
      *
      */
@@ -47,7 +53,7 @@ public class OrderEntity {
     /**
      * 0-unpaid, 1-paid, 2-canceled, 3-completed
      */
-    private Byte orderStatus;
+    private Integer orderStatus;
 
     /**
      *
@@ -62,5 +68,5 @@ public class OrderEntity {
     /**
      *
      */
-    private Byte deleteFlag;
+    private Integer deleteFlag;
 }

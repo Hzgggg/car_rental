@@ -52,4 +52,5 @@ public interface UserEntityMapper {
      * @return update count
      */
     int updateByPrimaryKey(UserEntity record);
+
 }

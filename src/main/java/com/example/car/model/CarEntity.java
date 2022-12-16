@@ -42,5 +42,5 @@ public class CarEntity {
     /**
      *
      */
-    private Byte deleteFlag;
+    private Integer deleteFlag;
 }

@@ -7,18 +7,12 @@ import java.util.List;
 public interface CarEntityService {
 
 
-    int deleteByPrimaryKey(Long id);
+    void create(CarEntity carEntity);
 
-    int insert(CarEntity record);
+    void delete(Long id);
 
-    int insertSelective(CarEntity record);
+    void update(CarEntity carEntity);
 
-    CarEntity selectByPrimaryKey(Long id);
-
-    List<CarEntity> selectCarList(CarEntity carEntity);
-
-    int updateByPrimaryKeySelective(CarEntity record);
-
-    int updateByPrimaryKey(CarEntity record);
+    List<CarEntity> list(CarEntity carEntity, Integer page, Integer pageSize);
 
 }

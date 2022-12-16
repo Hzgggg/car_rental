@@ -1,5 +1,6 @@
 package com.example.car.exception;
 
+import com.example.car.base.ErrorCodeEnum;
 import lombok.Getter;
 
 @Getter
@@ -28,5 +29,10 @@ public class ServiceException extends RuntimeException {
     public ServiceException(String message, int code) {
         this.code = code;
         this.message = message;
+    }
+
+    public ServiceException(ErrorCodeEnum enumItem) {
+        this.code = enumItem.getCode();
+        this.message = enumItem.getMsg();
     }
 }

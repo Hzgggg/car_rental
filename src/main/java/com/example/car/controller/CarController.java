@@ -3,10 +3,10 @@ package com.example.car.controller;
 import com.example.car.base.ResponseResult;
 import com.example.car.model.CarEntity;
 import com.example.car.service.CarEntityService;
-import com.example.car.vo.CarCreateVo;
-import com.example.car.vo.CarDeleteVo;
-import com.example.car.vo.CarListVo;
-import com.example.car.vo.CarUpdateVo;
+import com.example.car.vo.CarCreateVO;
+import com.example.car.vo.CarDeleteVO;
+import com.example.car.vo.CarListVO;
+import com.example.car.vo.CarUpdateVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -25,33 +25,33 @@ public class CarController {
     private CarEntityService carEntityService;
 
     @PostMapping("/create")
-    public ResponseResult create(@RequestBody @Validated CarCreateVo data) {
+    public ResponseResult create(@RequestBody @Validated CarCreateVO data) {
         CarEntity carEntity = new CarEntity();
         BeanUtils.copyProperties(data, carEntity);
-        carEntityService.insertSelective(carEntity);
+        carEntityService.create(carEntity);
         return new ResponseResult();
     }
 
     @PostMapping("/delete")
-    public ResponseResult delete(@RequestBody @Validated CarDeleteVo data) {
-        carEntityService.deleteByPrimaryKey(data.getId());
+    public ResponseResult delete(@RequestBody @Validated CarDeleteVO data) {
+        carEntityService.delete(data.getId());
         return new ResponseResult();
     }
 
     @PostMapping("/update")
-    public ResponseResult update(@RequestBody @Validated CarUpdateVo data) {
+    public ResponseResult update(@RequestBody @Validated CarUpdateVO data) {
         CarEntity carEntity = new CarEntity();
         BeanUtils.copyProperties(data, carEntity);
-        carEntityService.updateByPrimaryKeySelective(carEntity);
+        carEntityService.update(carEntity);
         return new ResponseResult();
     }
 
     @PostMapping("/list")
-    public ResponseResult list(@RequestBody @Validated CarListVo data) {
+    public ResponseResult list(@RequestBody @Validated CarListVO data) {
         // 使用SpringValidation校验数据
         CarEntity carEntity = new CarEntity();
         BeanUtils.copyProperties(data, carEntity);
-        List<CarEntity> carEntities = carEntityService.selectCarList(carEntity);
+        List<CarEntity> carEntities = carEntityService.list(carEntity, data.getPage(), data.getPageSize());
         ResponseResult result = new ResponseResult();
         result.setData(carEntities);
         return result;

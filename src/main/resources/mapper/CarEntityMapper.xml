@@ -125,8 +125,9 @@
         <include refid="Base_Column_List"/>
         from car_tab
         <where>
+            delete_flag = 0
             <if test="carModel != null and carModel != ''">
-                car_model like concat('%', #{carModel,jdbcType=VARCHAR},'%')
+                AND car_model like concat('%', #{carModel,jdbcType=VARCHAR},'%')
             </if>
             <if test="carStock != null">
                 AND car_stock >= #{carStock,jdbcType=BIGINT}

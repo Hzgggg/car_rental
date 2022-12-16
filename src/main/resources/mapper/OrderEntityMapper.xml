@@ -166,4 +166,31 @@
         delete_flag = #{deleteFlag,jdbcType=TINYINT}
         where id = #{id,jdbcType=BIGINT}
     </update>
+
+    <select id="selectUnCompleteByUserId" resultType="int">
+        select count(*) from order_tab where user_id = #{userId,jdbcType=BIGINT} and order_status != 3 and order_status
+        != 2 and delete_flag = 0
+    </select>
+
+    <select id="selectUnCompleteKeySelective" parameterType="com.example.car.model.OrderEntity"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from order_tab
+        <where>
+            delete_flag = 0
+            <if test="carId != null and carId != ''">
+                car_id = #{carId,jdbcType=BIGINT}
+            </if>
+            <if test="userId != null and userId != ''">
+                user_id = #{userId,jdbcType=BIGINT}
+            </if>
+            <if test="rentalStartTime != null">
+                rental_start_time &gt;= #{rentalStartTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="rentalEndTime != null">
+                rental_end_time &lt;= #{rentalEndTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
 </mapper>

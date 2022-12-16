@@ -12,8 +12,8 @@ public class ResponseResult<T> implements Serializable {
     private T data;
 
     public ResponseResult() {
-        this.code = AppHttpCodeEnum.SUCCESS.getCode();
-        this.msg = AppHttpCodeEnum.SUCCESS.getMsg();
+        this.code = ErrorCodeEnum.SUCCESS.getCode();
+        this.msg = ErrorCodeEnum.SUCCESS.getMsg();
     }
 
     public ResponseResult(Integer code, T data) {
@@ -48,26 +48,26 @@ public class ResponseResult<T> implements Serializable {
     }
 
     public static ResponseResult okResult(Object data) {
-        ResponseResult result = setAppHttpCodeEnum(AppHttpCodeEnum.SUCCESS, AppHttpCodeEnum.SUCCESS.getMsg());
+        ResponseResult result = setAppHttpCodeEnum(ErrorCodeEnum.SUCCESS, ErrorCodeEnum.SUCCESS.getMsg());
         if (data != null) {
             result.setData(data);
         }
         return result;
     }
 
-    public static ResponseResult errorResult(AppHttpCodeEnum enums) {
+    public static ResponseResult errorResult(ErrorCodeEnum enums) {
         return setAppHttpCodeEnum(enums, enums.getMsg());
     }
 
-    public static ResponseResult errorResult(AppHttpCodeEnum enums, String msg) {
+    public static ResponseResult errorResult(ErrorCodeEnum enums, String msg) {
         return setAppHttpCodeEnum(enums, msg);
     }
 
-    public static ResponseResult setAppHttpCodeEnum(AppHttpCodeEnum enums) {
+    public static ResponseResult setAppHttpCodeEnum(ErrorCodeEnum enums) {
         return okResult(enums.getCode(), enums.getMsg());
     }
 
-    private static ResponseResult setAppHttpCodeEnum(AppHttpCodeEnum enums, String msg) {
+    private static ResponseResult setAppHttpCodeEnum(ErrorCodeEnum enums, String msg) {
         return okResult(enums.getCode(), msg);
     }
 

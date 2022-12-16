@@ -9,7 +9,7 @@ import javax.validation.constraints.Positive;
 
 @Data
 @Accessors(chain = true)
-public class CarUpdateVo {
+public class CarUpdateVO {
     @Positive
     private Long id;
     /**

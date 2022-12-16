@@ -1,6 +1,6 @@
 package com.example.car.exception;
 
-import com.example.car.base.AppHttpCodeEnum;
+import com.example.car.base.ErrorCodeEnum;
 import com.example.car.base.ResponseResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,49 +16,43 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @RestControllerAdvice
 public class ExceptionsHandler {
 
-    /**
-     * 注意：
-     * 启用全局异常接管后，没有在此处定义拦截的异常都会默认返回500错误。
-     * 若需要自定义拦截的异常，请在此处定义拦截。
-     * 若需要输出异常的日志日志，请使用logger输出。
-     */
     private final Logger logger = LoggerFactory.getLogger(ExceptionsHandler.class);
 
     /**
-     * 基本异常
+     * Basic Error/Exception
      */
     @ExceptionHandler(Exception.class)
     public ResponseResult exception(Exception e) {
         logger.error(e.getMessage(), e);
-        return ResponseResult.errorResult(AppHttpCodeEnum.UNKOWN_ERROR);
+        return ResponseResult.errorResult(ErrorCodeEnum.UNKOWN_ERROR);
     }
 
     /**
-     * 请求路径无法找到异常
+     * path not found
      */
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseResult notFoundException() {
-        return ResponseResult.errorResult(AppHttpCodeEnum.NOT_FOUND_ERROR);
+        return ResponseResult.errorResult(ErrorCodeEnum.NOT_FOUND_ERROR);
     }
 
     /**
-     * 请求方法不支持异常
+     * The request method does not exists
      */
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseResult httpRequestMethodNotSupportedException() {
-        return ResponseResult.errorResult(AppHttpCodeEnum.METHOD_NOT_ALLOW_ERROR);
+        return ResponseResult.errorResult(ErrorCodeEnum.METHOD_NOT_ALLOW_ERROR);
     }
 
     /**
-     * 请求参数异常
+     * parameters error
      */
     @ExceptionHandler({HttpMessageNotReadableException.class, MissingServletRequestParameterException.class, MissingServletRequestPartException.class, BindException.class})
     public ResponseResult parameterException() {
-        return ResponseResult.errorResult(AppHttpCodeEnum.PARAMETER_ERROR);
+        return ResponseResult.errorResult(ErrorCodeEnum.PARAMETER_ERROR);
     }
 
     /**
-     * 服务异常
+     * service error
      */
     @ExceptionHandler(ServiceException.class)
     public ResponseResult serviceException(ServiceException e) {

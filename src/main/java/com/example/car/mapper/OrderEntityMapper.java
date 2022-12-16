@@ -3,6 +3,8 @@ package com.example.car.mapper;
 import com.example.car.model.OrderEntity;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface OrderEntityMapper {
     /**
@@ -52,4 +54,20 @@ public interface OrderEntityMapper {
      * @return update count
      */
     int updateByPrimaryKey(OrderEntity record);
+
+    /**
+     * uncomplete order
+     *
+     * @param record the updated record
+     * @return update count
+     */
+    int selectUnCompleteByUserId(Long userId);
+
+    /**
+     * uncomplete order
+     *
+     * @param record the updated record
+     * @return update count
+     */
+    List<OrderEntity> selectUnCompleteKeySelective(OrderEntity orderEntity);
 }

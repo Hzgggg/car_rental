@@ -2,19 +2,17 @@ package com.example.car.service;
 
 import com.example.car.model.OrderEntity;
 
+import java.util.List;
+
 public interface OrderEntityService {
 
+    void createOrder(OrderEntity orderEntity);
 
-    int deleteByPrimaryKey(Long id);
+    void cancelOrder(OrderEntity orderEntity);
 
-    int insert(OrderEntity record);
+    void payOrder(OrderEntity orderEntity);
 
-    int insertSelective(OrderEntity record);
+    void completeOrder(OrderEntity orderEntity);
 
-    OrderEntity selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(OrderEntity record);
-
-    int updateByPrimaryKey(OrderEntity record);
-
+    List<OrderEntity> listOrder(OrderEntity orderEntity, Integer page, Integer pageSize);
 }

@@ -32,5 +32,5 @@ public class UserEntity {
     /**
      *
      */
-    private Byte deleteFlag;
+    private Integer deleteFlag;
 }
