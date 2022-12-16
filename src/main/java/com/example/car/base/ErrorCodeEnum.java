@@ -1,9 +1,9 @@
 package com.example.car.base;
 
 public enum ErrorCodeEnum {
-    // 成功
+    // success
     SUCCESS(200, "success"),
-    // 登录
+    // login
     UNKOWN_ERROR(500, "unkown error, please connect developers"),
     NOT_FOUND_ERROR(404, "Not found"),
     METHOD_NOT_ALLOW_ERROR(405, "Method not allowed"),

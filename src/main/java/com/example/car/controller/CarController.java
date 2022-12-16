@@ -48,7 +48,6 @@ public class CarController {
 
     @PostMapping("/list")
     public ResponseResult list(@RequestBody @Validated CarListVO data) {
-        // 使用SpringValidation校验数据
         CarEntity carEntity = new CarEntity();
         BeanUtils.copyProperties(data, carEntity);
         List<CarEntity> carEntities = carEntityService.list(carEntity, data.getPage(), data.getPageSize());
